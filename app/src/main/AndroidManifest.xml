@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Actividad8">
         <activity
+            android:name=".detalle"
+            android:exported="false" />
+        <activity
             android:name=".ActivityViewData"
             android:exported="false" />
         <activity

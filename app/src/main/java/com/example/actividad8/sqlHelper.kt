@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper
 class sqlHelper(context: Context):SQLiteOpenHelper(context,"escuela.db",null,1) {
     override fun onCreate(db: SQLiteDatabase?) {
         val creationOrder="CREATE TABLE estudiantes("+
-                "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 "nombre TEXT,"+
                 "cuenta TEXT);"
         db!!.execSQL(creationOrder)
