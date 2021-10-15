@@ -1,5 +1,6 @@
 package com.example.actividad8
 
+import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import androidx.appcompat.app.AppCompatActivity
@@ -44,7 +45,10 @@ class ActivityViewData : AppCompatActivity() {
 
         lviData.setOnItemClickListener(){
             parent,view,position,id->
-            Toast.makeText(this, parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show()
+            val nombre=parent.getItemAtPosition(position).toString()
+            val intent:Intent= Intent(this,crudActivity::class.java)
+            intent.putExtra("nombre",nombre)
+            startActivity(intent)
         }
     }
 }
