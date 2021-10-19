@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -33,17 +34,24 @@ class crudActivity : AppCompatActivity() {
         val txvId:TextView=findViewById(R.id.txvId)
         val edtName:EditText=findViewById(R.id.edtNameCrud)
         val edtCount:EditText=findViewById(R.id.edtCuentaCrud)
+        val btnDelete:Button=findViewById(R.id.btnDelete)
 
         //datos del intent
         val resIntent:Intent=intent
         val nombre=resIntent.getStringExtra("nombre").toString()
 
         studensDBHelper= sqlHelper(this)
-
-        /*txvId.text=nombre
-        edtName.setText(nombre)
-        edtCount.setText(nombre)*/
         getData(studensDBHelper,nombre,txvId,edtName,edtCount)
 
+        btnDelete.setOnClickListener {
+            val res=studensDBHelper.deleteData(txvId.text.toString().toInt())
+            if (res>0) {
+                val intent:Intent= Intent(this,MainActivity::class.java)
+                startActivity(intent)
+                Toast.makeText(this, "datos eleminados", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "ocurrio un error", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 }
